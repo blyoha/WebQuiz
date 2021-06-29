@@ -1,15 +1,10 @@
-.titleText {
-    font-size: 25px;
-    margin-top: 200px;
-    font-family: SANS-SERIF;
+body {
+    background: white;
     text-align: center;
-    color: black;
-    text-shadow: 2px 2px 0px gray;
 }
 
-.buttonStyle {
-    display: flex;
-    justify-content: center;
+h1 {
+    color: #8abbff;
 }
 
 button {
@@ -21,4 +16,16 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 20px;
+    margin-top: 40px;
+    transition: .2s ease;
+    border-radius: 5px;
 }
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.content {
+    margin-top: 200px;
+}
+

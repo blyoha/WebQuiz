@@ -1,10 +1,16 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Answer, Question
 
 
 def index(request):
-    return render()
+    # Render certain form
+    return render(request, 'myQuiz/index.html')
 
 
-def about(request):
-    return HttpResponse("<h4>PAGE ABOUT</h4>")
+def question(request, question_id):
+    questions = Question.objects.all()
+    return render(request, 'myQuiz/questionLayout.html', {'question_id': question_id})
+
+
+def results(request):
+    return render(request, 'myQuiz/results.html')
