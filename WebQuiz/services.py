@@ -8,4 +8,5 @@ class QuizResultService():
         self.answers_dto = answers_dto
 
     def get_result(self) -> float:
+        pass
         # your code here

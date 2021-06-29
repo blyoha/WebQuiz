@@ -1,0 +1,24 @@
+.titleText {
+    font-size: 25px;
+    margin-top: 200px;
+    font-family: SANS-SERIF;
+    text-align: center;
+    color: black;
+    text-shadow: 2px 2px 0px gray;
+}
+
+.buttonStyle {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    background-color: #5199FF;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+}
