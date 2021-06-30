@@ -22,6 +22,7 @@ class Answer(models.Model):
 
     text = models.CharField('Текст', max_length=100)
     id = models.IntegerField('ID', primary_key=True)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, default=None)
     is_right = models.BooleanField(default=False)
     is_checked = models.BooleanField(default=False)
 
