@@ -13,13 +13,13 @@
 <body>
     <div class="question">
         <h1>{{ question.text }}</h1>
-        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-        <form action="{% url 'myQuiz:question' question.id %}">
-        {% for a in question.answer_set.all %}
-            <input type="radio" name="a" id="a{{ forloop.counter }}" value="{{ a.id }}">
-            <label for="a{{ forloop.counter }}">{{ a.text }}</label><br>
-        {% endfor %}
-
+        <form action="{% url 'myQuiz:vote' question.id %}" method="post">
+            {% csrf_token %}
+            {% for ans in question.answer_set.all %}
+                <input type="radio" name="ans" id="ans{{ forloop.counter }}" value="{{ ans.id }}">
+                <label for="ans{{ forloop.counter }}">{{ ans.text }}</label><br>
+            {% endfor %}
+            {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
             <input type='submit' value='Далее'>
         </form>
     </div>
