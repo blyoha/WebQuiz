@@ -1,6 +1,6 @@
 {% load static %}
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -20,7 +20,11 @@
                 <label for="ans{{ forloop.counter }}">{{ ans.text }}</label><br>
             {% endfor %}
             {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-            <input type='submit' value='Далее'>
+            {% if question.id == 2 %}
+                <input type='submit' value='Завершить тест'>
+            {% else %}
+                <input type='submit' value='Далее'>
+            {% endif %}
         </form>
     </div>
 </body>

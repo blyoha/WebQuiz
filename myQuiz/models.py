@@ -26,6 +26,9 @@ class Answer(models.Model):
     is_right = models.BooleanField(default=False)
     is_checked = models.BooleanField(default=False)
 
+    def is_answered_correct(self):
+        return self.is_checked == self.is_right
+
     def __str__(self):
         return self.text
 

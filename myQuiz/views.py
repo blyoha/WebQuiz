@@ -29,14 +29,18 @@ def vote(request, question_id):
     else:
         current_a.is_checked = True
         current_a.save()
-        return HttpResponseRedirect(reverse('myQuiz:question', args=(question_id+1,)))
-        # return render(request, 'myQuiz/questionLayout.html', {'question': q, 'question_id': question_id})
+
+        if q.id == 5:
+            return HttpResponseRedirect(reverse('myQuiz:results'))
+        return HttpResponseRedirect(reverse('myQuiz:question', args=(question_id+1, )))
 
 
 def question(request, question_id):
+    button_val = 'Далее'
     q = get_object_or_404(Question, pk=question_id)
-    return render(request, 'myQuiz/questionLayout.html', {'question': q})
+    return render(request, 'myQuiz/questionLayout.html', {'question': q, })
 
 
-def results(request):
-    return render(request, 'myQuiz/results.html')
+def results(request, answers):
+    percent: float = 0.0  # Gets percentage of right answers
+    return render(request, 'myQuiz/results.html', {'right_answers': percent})
