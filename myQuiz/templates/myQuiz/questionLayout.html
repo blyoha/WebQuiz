@@ -16,11 +16,15 @@
         <form action="{% url 'myQuiz:vote' question.id %}" method="post">
             {% csrf_token %}
             {% for ans in question.answer_set.all %}
-                <input type="radio" name="ans" id="ans{{ forloop.counter }}" value="{{ ans.id }}">
+                {% if question.id == 4 or question.id == 5 %}
+                    <input type="checkbox" name="ans" id="ans{{ forloop.counter }}" value="{{ ans.id }}">
+                {% else %}
+                    <input type="radio" name="ans" id="ans{{ forloop.counter }}" value="{{ ans.id }}">
+                {% endif %}
                 <label for="ans{{ forloop.counter }}">{{ ans.text }}</label><br>
             {% endfor %}
             {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-            {% if question.id == 2 %}
+            {% if question.id == 5 %}
                 <input type='submit' value='Завершить тест'>
             {% else %}
                 <input type='submit' value='Далее'>

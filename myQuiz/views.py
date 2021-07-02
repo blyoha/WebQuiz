@@ -3,6 +3,8 @@ from django.urls import reverse
 from django.shortcuts import get_object_or_404, render
 from .models import Answer, Question
 
+from .services.results_calculation import calculate_results
+
 
 def index(request):
     # Render certain form
@@ -18,8 +20,11 @@ def index(request):
 
 def vote(request, question_id):
     q = get_object_or_404(Question, pk=question_id)
+    checked_ans = list()
     try:
-        current_a = q.answer_set.get(pk=request.POST['ans'])
+        for a in request.POST.getlist('ans'):
+            checked_ans.append(q.answer_set.get(pk=a))
+            # current_a = q.answer_set.get(pk=request.POST.getlist('ans'))
     except (KeyError, Answer.DoesNotExist):
         # Redisplay the question voting form.
         return render(request, 'myQuiz/questionLayout.html', {
@@ -27,8 +32,9 @@ def vote(request, question_id):
             'error_message': "Пожалуйста, выберите ответ.",
         })
     else:
-        current_a.is_checked = True
-        current_a.save()
+        for a in checked_ans:
+            a.is_checked = True
+            a.save()
 
         if q.id == 5:
             return HttpResponseRedirect(reverse('myQuiz:results'))
@@ -41,6 +47,6 @@ def question(request, question_id):
     return render(request, 'myQuiz/questionLayout.html', {'question': q, })
 
 
-def results(request, answers):
-    percent: float = 0.0  # Gets percentage of right answers
+def results(request):
+    percent: int = calculate_results()  # Gets percentage of right answers
     return render(request, 'myQuiz/results.html', {'right_answers': percent})
