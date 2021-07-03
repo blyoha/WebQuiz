@@ -1,16 +1,12 @@
 body {
-    background: white;
+    background: #dcdde0;
     text-align: center;
+    color: #161616;
 }
 
-h1 {
-    color: #8abbff;
-}
-
-button {
-    background-color: #5199FF;
+.start_button {
+    background: #0092e3;
     border: none;
-    color: white;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -19,9 +15,30 @@ button {
     margin-top: 40px;
     transition: .2s ease;
     border-radius: 5px;
+    font-weight: bold;
 }
 
-button:hover {
+.question_button {
+    background-color: #0092e3;
+    border: none;
+    padding: 7px 20px;
+    color: #161616;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin-top: 40px;
+    transition: .2s ease;
+    border-radius: 5px;
+    font-weight: bold;
+
+}
+
+.start_button:hover {
+    transform: scale(1.05);
+}
+
+.question_button:hover {
     transform: scale(1.05);
 }
 
@@ -30,5 +47,38 @@ button:hover {
 }
 
 .question {
-    margin-top: 200px;
+    margin-top: 50px;
+    text-align: left;
+    margin-left: 20px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 50%;
+    box-shadow: 5px 5px 5px gray;
+}
+
+.answer {
+    font-weight: bold;
+    font-size: 20px;
+    bg-color: blue;
+    margin-bottom: 10px;
+}
+
+.question_text {
+    font-size: 35px;
+    color: #161616;
+    margin-bottom: 20px;
+    text-decoration: underline;
+}
+
+.question_head {
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.next_button {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
 }
