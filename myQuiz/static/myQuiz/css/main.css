@@ -2,6 +2,11 @@ body {
     background: #dcdde0;
     text-align: center;
     color: #161616;
+    margin-top: 10%;
+}
+
+a {
+    text-decoration: none;
 }
 
 .start_button {
@@ -9,7 +14,6 @@ body {
     border: none;
     padding: 15px 32px;
     text-align: center;
-    text-decoration: none;
     display: inline-block;
     font-size: 20px;
     margin-top: 40px;
@@ -18,32 +22,38 @@ body {
     font-weight: bold;
 }
 
+.start_button:hover {
+    transform: scale(1.05);
+}
+
 .question_button {
+    font-size: 20px;
     background-color: #0092e3;
     border: none;
     padding: 7px 20px;
     color: #161616;
     text-align: center;
-    text-decoration: none;
     display: inline-block;
     font-size: 15px;
-    margin-top: 40px;
+    margin-top: 10px;
     transition: .2s ease;
     border-radius: 5px;
     font-weight: bold;
     width: 20%;
 }
 
-.start_button:hover {
-    transform: scale(1.05);
-}
-
 .question_button:hover {
     transform: scale(1.05);
 }
 
-.content {
-    ;
+.next_button {
+    padding-right: 30px;
+    padding-left: 30px;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: flex-end;
+    color: white;
 }
 
 .question {
@@ -73,7 +83,6 @@ body {
 .question_text {
     font-size: 35px;
     color: #161616;
-    text-decoration: underline;
     margin-left: 10%;
     margin-right: 10%;
     text-align: center;
@@ -85,21 +94,12 @@ body {
     margin-bottom: 30px;
 }
 
-.next_button {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-}
-
 .box {
     animation: fadeIn 1s;
-    margin-top: 50px;
     text-align: left;
     background-color: white;
     padding: 50px;
     border-radius: 10px;
-    margin-left: auto;
-    margin-right: auto;
     margin-left: 15%;
     margin-right: 15%;
     -moz-box-shadow:0 0 10px gray;
@@ -122,4 +122,25 @@ body {
 @keyframes fadeIn {
   0% {opacity:0;}
   100% {opacity:1;}
+}
+
+.content {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 10px;
+    background-color: #dcdde0;
+    border-radius: 10px;
+    color: #161616;
+    display: flex;
+    justify-content: center;
+    transition: .2s ease;
+}
+
+.content:hover {
+    transform: scale(1.05);
+   }
+
+.answers {
+    margin-left: 20px;
+    margin-right: 20px;
 }

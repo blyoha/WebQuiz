@@ -17,22 +17,26 @@
         </div>
         <form action="{% url 'myQuiz:vote' question.id %}" method="post">
             {% csrf_token %}
+            <div class="answers">
             {% for ans in question.answer_set.all %}
+                <a class="content">
                 {% if question.id == 4 or question.id == 5 %}
-                    <input class="form-check-input" type="checkbox" name="ans" id="ans{{ forloop.counter }}" value="{{ ans.id }}">
+                    <input class="form-check-input" type="checkbox" name="ans" id="ans{{ forloop.counter }}" value="{{ ans.id }}" style="margin-top:10px;margin-right: 10px;">
                 {% else %}
-                    <input class="form-check-input" type="radio" name="ans" id="ans{{ forloop.counter }}" value="{{ ans.id }}">
+                    <input class="form-check-input" type="radio" name="ans" id="ans{{ forloop.counter }}" value="{{ ans.id }}" style="margin-top:10px;margin-right: 10px;">
                 {% endif %}
                 <label class="answer" for="ans{{ forloop.counter }}">{{ ans.text }}</label><br>
+                </a>
             {% endfor %}
+            </div>
             {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
             {% if question.id == 5 %}
                 <div class="next_button">
-                    <input class="question_button" type='submit' value='Завершить тест'>
+                    <input class="question_button" type='submit' value='Завершить тест' style="font-size:18px;">
                 </div>
             {% else %}
                 <div class="next_button">
-                    <input class="question_button" type='submit' value='Далее'>
+                    <input class="question_button" type='submit' value='Далее' style="font-size:18px;">
                 </div>
             {% endif %}
         </form>
