@@ -1,19 +1,13 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.shortcuts import get_object_or_404, render
-from .models import Answer, Question
+from .models import Question
 
-from .services.results_calculation import calculate_results
+from .services.app_logic import calculate_results, clear_db
 
 
 def index(request):
-    # Render certain form
-    # questions = Question.objects.all()
-
-    for obj in Question.objects.all():
-        for ans in obj.answer_set.all():
-            ans.is_checked = False
-            ans.save()
+    clear_db()
 
     return render(request, 'myQuiz/index.html')
 
@@ -23,7 +17,6 @@ def vote(request, question_id):
     checked_ans = list()
     for a in request.POST.getlist('ans'):
         checked_ans.append(q.answer_set.get(pk=a))
-        # current_a = q.answer_set.get(pk=request.POST.getlist('ans'))
 
     for a in checked_ans:
         a.is_checked = True
@@ -31,13 +24,13 @@ def vote(request, question_id):
 
     if q.id == 5:
         return HttpResponseRedirect(reverse('myQuiz:results'))
+
     return HttpResponseRedirect(reverse('myQuiz:question', args=(question_id+1, )))
 
 
 def question(request, question_id):
-    button_val = 'Далее'
     q = get_object_or_404(Question, pk=question_id)
-    return render(request, 'myQuiz/questionLayout.html', {'question': q, })
+    return render(request, 'myQuiz/question.html', {'question': q})
 
 
 def results(request):
