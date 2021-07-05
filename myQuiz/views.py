@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.shortcuts import get_object_or_404, render
 from .models import Question
 
-from .services.app_logic import calculate_results, clear_db
+from .services.app_logic import calculate_results, clear_db, trace_answer
 
 
 def index(request):
@@ -14,13 +14,7 @@ def index(request):
 
 def vote(request, question_id):
     q = get_object_or_404(Question, pk=question_id)
-    checked_ans = list()
-    for a in request.POST.getlist('ans'):
-        checked_ans.append(q.answer_set.get(pk=a))
-
-    for a in checked_ans:
-        a.is_checked = True
-        a.save()
+    trace_answer(request, q)
 
     if q.id == 5:
         return HttpResponseRedirect(reverse('myQuiz:results'))

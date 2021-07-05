@@ -27,14 +27,13 @@ a {
 }
 
 .question_button {
-    font-size: 20px;
+    font-size: 18px;
     background-color: #0092e3;
     border: none;
     padding: 7px 20px;
     color: #161616;
     text-align: center;
     display: inline-block;
-    font-size: 15px;
     margin-top: 10px;
     transition: .2s ease;
     border-radius: 5px;
@@ -53,7 +52,6 @@ a {
     height: 60px;
     display: flex;
     justify-content: flex-end;
-    color: white;
 }
 
 .question {
@@ -137,8 +135,10 @@ a {
 }
 
 .content:hover {
-    transform: scale(1.05);
-   }
+    -moz-box-shadow:0 0 10px #0092e3;
+    -webkit-box-shadow:0 0 10px #0092e3;
+    box-shadow:0 0 10px #0092e3;
+}
 
 .answers {
     margin-left: 20px;

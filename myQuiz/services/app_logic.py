@@ -16,3 +16,13 @@ def clear_db() -> None:
         for ans in obj.answer_set.all():
             ans.is_checked = False
             ans.save()
+
+
+def trace_answer(request, question) -> None:
+    checked_ans = list()
+    for a in request.POST.getlist('ans'):
+        checked_ans.append(question.answer_set.get(pk=a))
+
+    for a in checked_ans:
+        a.is_checked = True
+        a.save()
