@@ -1,21 +1,14 @@
-{% load static %}
-<!doctype html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Тест</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'myQuiz/css/main.css' %}">
-</head>
-<body>
+{% extends 'myQuiz/mainLayout.html' %}
+
+{% block title %}
+    Главная
+{% endblock %}
+
+{% block content %}
     <div class="box">
         <h1>Тест по программированию</h1>
         <form action="1">
             <button class="start_button">Начать</button>
         </form>
     </div>
-</body>
-</html>
+{% endblock %}

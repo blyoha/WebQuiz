@@ -1,17 +1,20 @@
-from ..models import Question, Answer
+from ..models import Question
 
 
 def calculate_results() -> int:
-    all_answers = list()
-    for q in Question.objects.all():
-        all_answers.append(int(all([a.is_answered_correct() for a in q.answer_set.all()])))
+    """Returns a percent of the right answers"""
+    all_answers: list = []
+    for question in Question.objects.all():
+        question_accuracy: int = all([a.is_answered_correct() for a in question.answer_set.all()])
+        all_answers.append(question_accuracy)
 
-    percent = len([a for a in all_answers if a]) / len(all_answers) * 100
+    percent: float = len([a for a in all_answers if a]) / len(all_answers) * 100
 
     return int(percent)
 
 
 def clear_db() -> None:
+    """Clears SQL database"""
     for obj in Question.objects.all():
         for ans in obj.answer_set.all():
             ans.is_checked = False
@@ -19,10 +22,11 @@ def clear_db() -> None:
 
 
 def trace_answer(request, question) -> None:
-    checked_ans = list()
-    for a in request.POST.getlist('ans'):
-        checked_ans.append(question.answer_set.get(pk=a))
+    """Registers checked answers"""
+    checked_ans: list = []
+    for ans in request.POST.getlist('ans'):
+        checked_ans.append(question.answer_set.get(pk=ans))
 
-    for a in checked_ans:
-        a.is_checked = True
-        a.save()
+    for ans in checked_ans:
+        ans.is_checked = True
+        ans.save()

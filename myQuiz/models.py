@@ -2,6 +2,8 @@ from django.db import models
 
 
 class Question(models.Model):
+    """Represents a model of a question in the service"""
+
     # Setting the default model manager
     objects = models.Manager()
 
@@ -17,6 +19,8 @@ class Question(models.Model):
 
 
 class Answer(models.Model):
+    """Represents a model of an answer in the service"""
+
     # Setting the default model manager
     objects = models.Manager()
 
@@ -26,7 +30,7 @@ class Answer(models.Model):
     is_right = models.BooleanField(default=False)
     is_checked = models.BooleanField(default=False)
 
-    def is_answered_correct(self):
+    def is_answered_correct(self) -> bool:
         return self.is_checked == self.is_right
 
     def __str__(self):
